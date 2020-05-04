@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Item_scrolling"
+            android:name=".Item.Item_scrolling"
             android:label="@string/title_activity_item_scrolling"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
