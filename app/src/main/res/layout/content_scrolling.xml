@@ -10,33 +10,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
         <com.google.android.material.chip.Chip
-            android:id="@+id/action_chip"
-            style="@style/Widget.MaterialComponents.Chip.Action"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/action_chip_txt"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:padding="10dp"
-            android:text="Hello World"
-            app:chipIcon="@drawable/ic_android_24dp"
-            app:iconStartPadding="5dp"/>
+            app:chipBackgroundColor="@android:color/holo_blue_bright"
+            app:chipText="Background Color" />
 
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipText="Ripple Color"
+            app:rippleColor="@android:color/holo_orange_dark" />
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-
-    </androidx.recyclerview.widget.RecyclerView>
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipIcon="@mipmap/ic_launcher"
+            app:chipText="Chip icon" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
