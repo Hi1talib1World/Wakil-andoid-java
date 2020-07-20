@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mail"
+        android:icon="@drawable/ic_mail"
+        android:title="my Favorits" />
+    <item android:id="@+id/upload"
+        android:icon="@drawable/ic_upload"
+        android:title="About"
+        android:showAsAction="ifRoom" />
+
+</menu>
