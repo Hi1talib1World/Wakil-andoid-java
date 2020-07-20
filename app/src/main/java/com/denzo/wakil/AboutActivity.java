@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.denzo.wakil.Models.Member;
+import com.denzo.wakil.adapters.AboutRecyclerviewAdapter;
+
 import java.util.ArrayList;
 
 public class AboutActivity extends AppCompatActivity {
