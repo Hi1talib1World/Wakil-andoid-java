@@ -24,6 +24,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
     implementation 'com.google.android.material:material:1.0.0-alpha1'
+    implementation 'com.github.p32929:OfficeAbout:1.0.0.7'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
