@@ -26,7 +26,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0-alpha1'
     implementation 'com.github.p32929:OfficeAbout:1.0.0.7'
     implementation 'com.squareup.picasso:picasso:2.5.2'
-
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.squareup.picasso:picasso:2.4.0'
+    implementation 'com.android.volley:volley:1.1.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
