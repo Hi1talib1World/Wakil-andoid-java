@@ -36,7 +36,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         final Product_List productList=product_lists.get(i);
         String pimg=productList.getImage();
 
-        Picasso.with(ct).load(pimg).into(viewHolder.img);
+        Picasso.get(ct).load(pimg).into(viewHolder.img);
 
 
         viewHolder.tv.setText(productList.getName());
@@ -53,7 +53,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
                 int id=productList.getId();
                 String image=productList.getImage();
-                String name=productList.getMame();
+                String name=productList.getName();
 
                 favoriteList.setId(id);
                 favoriteList.setImage(image);
