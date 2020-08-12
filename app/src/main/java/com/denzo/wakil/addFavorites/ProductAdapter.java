@@ -59,9 +59,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 favoriteList.setImage(image);
                 favoriteList.setName(name);
 
-                if (MainActivity.favoriteDatabase.favoriteDao().isFavorite(id)!=1){
+                if (Favorites.favoriteDatabase.favoriteDao().isFavorite(id)!=1){
                     viewHolder.fav_btn.setImageResource(R.drawable.ic_favorite);
-                    MainActivity.favoriteDatabase.favoriteDao().addData(favoriteList);
+                    Favorites.favoriteDatabase.favoriteDao().addData(favoriteList);
 
                 }else {
                     viewHolder.fav_btn.setImageResource(R.drawable.ic_favorite_border_black_24dp);
