@@ -1,6 +1,6 @@
 package com.denzo.wakil.addFavorites;
 
-import androidx.room.ColumnInfo;
+
 import androidx.room.Entity;
 
 @Entity(tableName="favoritelist")
