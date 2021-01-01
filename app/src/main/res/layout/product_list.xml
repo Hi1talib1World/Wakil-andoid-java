@@ -34,7 +34,7 @@
                 android:layout_toRightOf="@+id/img_pr"
                 android:layout_marginLeft="100dp"
                 android:id="@+id/fav_btn"
-                android:src="@drawable/ic_favorite_border_black_24dp"
+                android:src="@drawable/ic_account_group_black_18dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
 
