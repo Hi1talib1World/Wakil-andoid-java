@@ -3,11 +3,16 @@ package com.denzo.wakil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.ListFragment;
+
 
 import java.util.List;
 
+
+
 private static class ViewPagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mmFragmentTitleList FragmentList = new ArrayList<>();
+    ListFragment mFragmentList;
+    private final List<Fragment> mmFragmentTitleList ListFragment = new ArrayList<>();
     private final List<String> = new ArrayList<>();
 
     public ViewPagerAdapter(FragmentManager manager) {
