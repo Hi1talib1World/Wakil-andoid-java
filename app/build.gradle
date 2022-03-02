@@ -20,18 +20,20 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.material:material:1.0.0'
-
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'com.google.android.material:material:1.0.0-alpha1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.github.smarteist:autoimageslider:1.3.2'
+    implementation 'com.google.android.material:material:1.6.0-alpha03'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.0-alpha01'
+    implementation 'com.google.android.material:material:1.6.0-alpha03'
     implementation 'com.github.p32929:OfficeAbout:1.0.0.7'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'androidx.room:room-runtime:2.2.6'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'androidx.room:room-runtime:2.4.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "android.arch.persistence.room:runtime:1.0.0"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 
-    implementation 'com.squareup.picasso:picasso:2.4.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'android.arch.persistence.room:runtime:1.0.0-beta1'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-beta1"
