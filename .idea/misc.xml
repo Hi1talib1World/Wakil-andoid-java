@@ -3,8 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/drawable/round.xml" value="0.181" />
+        <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/layout/activity_hotel_viewer.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/layout/activity_login_acitvity.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/layout/activity_main.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/layout/content_main.xml" value="0.2384428223844282" />
         <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/layout/hotel_card.xml" value="0.14628623188405798" />
         <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/layout/image_slider_layout_item.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/layout/rec_content_main.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/hicham/Documents/GitHub/Wakil-andoid-java/app/src/main/res/layout/rec_hotel_row.xml" value="0.33" />
       </map>
     </option>
   </component>
