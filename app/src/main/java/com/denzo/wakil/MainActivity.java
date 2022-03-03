@@ -7,13 +7,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
+import com.denzo.wakil.Decoration.GridSpacingItemDecoration;
+import com.denzo.wakil.Util.Bookings;
+import com.denzo.wakil.Util.CurrentUser;
+import com.denzo.wakil.Util.Hotel;
+import com.denzo.wakil.Util.HotelView;
+import com.denzo.wakil.Util.Reader;
 import com.denzo.wakil.adapters.HotelsAdapter;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
