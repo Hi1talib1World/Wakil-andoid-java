@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,7 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
+
 
 import com.bumptech.glide.Glide;
 import com.denzo.wakil.Decoration.GridSpacingItemDecoration;
