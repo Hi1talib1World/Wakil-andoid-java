@@ -11,7 +11,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.denzo.wakil.HotelViewer;
 import com.denzo.wakil.R;
+import com.denzo.wakil.Util.HotelView;
+
+import java.util.List;
 
 
 public class Rec_HotelsAdapter extends RecyclerView.Adapter<Rec_HotelsAdapter.MyViewHolder> {
@@ -34,7 +39,7 @@ public class Rec_HotelsAdapter extends RecyclerView.Adapter<Rec_HotelsAdapter.My
     }
 
 
-    public Rec_HotelsAdapter(Context rec_Context,List<HotelView> hotelsList) {
+    public Rec_HotelsAdapter(Context rec_Context, List<HotelView> hotelsList) {
         this.rec_Context = rec_Context;
         this.hotelsList = hotelsList;
     }
