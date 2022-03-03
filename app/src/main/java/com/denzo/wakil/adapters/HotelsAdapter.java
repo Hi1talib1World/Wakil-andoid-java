@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.denzo.wakil.HotelViewer;
 import com.denzo.wakil.R;
 import com.denzo.wakil.Util.HotelView;
 
@@ -60,7 +61,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
         holder.rating.setText("Ratings: "+hotel.getRating());
         holder.features.setText("Features: "+hotel.getFeatures());
         // loading album cover using Glide library
-        Glide.with(mContext).load(hotel.getThumbnail()).into(holder.thumbnail);
+        Glide.with(mCtx).load(hotel.getThumbnail()).into(holder.thumbnail);
 
         holder.viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
