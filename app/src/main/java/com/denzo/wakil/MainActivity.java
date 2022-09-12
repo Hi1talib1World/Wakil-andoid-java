@@ -1,6 +1,7 @@
 package com.denzo.wakil;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private HotelsAdapter adapter;
+    Activity context;
+
     private List<HotelView> hotelList;
     private String username;
     @Override
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Intent intent = getIntent();
+        Intent intent = context.getIntent();
 
         username = CurrentUser.username;
         initCollapsingToolbar();
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle(getString(R.string.app_name));
+                    collapsingToolbar.setTitle(context.getString(R.string.app_name));
                     isShow = true;
 
                 } else if (isShow) {
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Bookings getBooked(){
-        ArrayList<Bookings> bookings = Reader.getBookingsList(getApplicationContext());
+        ArrayList<Bookings> bookings = Reader.getBookingsList(context.getApplicationContext());
         if(bookings == null)
             return null;
         for(Bookings book : bookings){
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         Bookings booking = getBooked();
         HotelView hotelview ;
-        List<Hotel> hotels = Reader.getRestaurantList(getApplicationContext());
+        List<Hotel> hotels = Reader.getRestaurantList(context.getApplicationContext());
 
         if(booking==null)
         {
@@ -183,9 +186,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.show_bookings:
                 Bookings booking = getBooked();
-                List<Hotel> hotels = Reader.getRestaurantList(getApplicationContext());
+                List<Hotel> hotels = Reader.getRestaurantList(context.getApplicationContext());
                 if(booking==null)
-                    Toast.makeText(getApplicationContext(),"No Bookings for you",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context.getApplicationContext(),"No Bookings for you",Toast.LENGTH_LONG).show();
                 else {
                     List<Integer> ids = booking.getId();
                     String res = "";
@@ -195,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                             res = res + h.getName() +"\n";
                         }
                     }
-                    Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
+                    Toast.makeText(context.getApplicationContext(),res,Toast.LENGTH_LONG).show();
                 }
                 return true;
             default:
