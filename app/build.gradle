@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.denzo.wakil"
-        minSdkVersion 17
+        minSdkVersion 26
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
