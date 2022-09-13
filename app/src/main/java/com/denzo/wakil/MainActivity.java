@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        finishAffinity();
+        context.finishAffinity();
 
         System.exit(0);
     }
