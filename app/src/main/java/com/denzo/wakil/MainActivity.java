@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
 
         hotelList = new ArrayList<>();
-        adapter = new HotelsAdapter(this, hotelList);
+        adapter = new HotelsAdapter(context, hotelList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this,1);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(context,1);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
