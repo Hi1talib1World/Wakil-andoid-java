@@ -95,4 +95,6 @@
     <string name="title_activity_example">example</string>
     <string name="title_activity_item">item</string>
     <string name="item_title">Item Title</string>
+    <string name="backdrop_title">Item Title</string>
+    <string name="backdrop_subtitle">Item Title</string>
 </resources>
