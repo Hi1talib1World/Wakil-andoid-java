@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_acitvity);
         getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         login = findViewById(R.id.login);
         login.setOnClickListener(view -> {
