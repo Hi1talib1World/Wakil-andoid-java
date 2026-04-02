@@ -10,46 +10,39 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.denzo.wakil.MainActivity;
 import com.denzo.wakil.R;
-import com.denzo.wakil.Util.CurrentUser;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private EditText etUsername, etPassword;
-    private Button btnLogin;
-    private TextView tvRegister;
+    private Button btnRegister;
+    private TextView tvLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
-        btnLogin = findViewById(R.id.btn_login);
-        tvRegister = findViewById(R.id.tv_register);
+        btnRegister = findViewById(R.id.btn_register);
+        tvLogin = findViewById(R.id.tv_login);
 
-        btnLogin.setOnClickListener(view -> {
+        btnRegister.setOnClickListener(view -> {
             String username = etUsername.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
             if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                 Toast.makeText(this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
             } else {
-                // Simple hardcoded check for now
-                if (username.equals("admin") && password.equals("admin")) {
-                    CurrentUser.username = username;
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
-                } else {
-                    Toast.makeText(this, R.string.invalid_credentials, Toast.LENGTH_SHORT).show();
-                }
+                // For demonstration, just showing success and going back to login
+                Toast.makeText(this, R.string.registration_success, Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
-        tvRegister.setOnClickListener(view -> {
-            startActivity(new Intent(this, RegisterActivity.class));
+        tvLogin.setOnClickListener(view -> {
+            finish();
         });
     }
 }

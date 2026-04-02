@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">وكيل</string>
+    <string name="action_settings">الإعدادات</string>
+    <string name="backdrop_title">مرحباً بك في وكيل</string>
+    <string name="backdrop_subtitle">ابحث عن أفضل إقامة</string>
+    <string name="show_bookings">حجوزاتي</string>
+
+    <!-- Login & Register -->
+    <string name="login">تسجيل الدخول</string>
+    <string name="register">إنشاء حساب</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="password">كلمة المرور</string>
+    <string name="dont_have_account">ليس لديك حساب؟ سجل الآن</string>
+    <string name="already_have_account">لديك حساب بالفعل؟ سجل دخولك</string>
+    <string name="invalid_credentials">اسم المستخدم أو كلمة المرور غير صحيحة</string>
+    <string name="registration_success">تم التسجيل بنجاح</string>
+    <string name="fill_all_fields">يرجى ملء جميع الحقول</string>
+    <string name="no_bookings">لا يوجد حجوزات لك</string>
+</resources>

@@ -1,6 +1,5 @@
 package com.denzo.wakil;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -10,14 +9,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.denzo.wakil.Decoration.GridSpacingItemDecoration;
+import com.denzo.wakil.Login.LoginActivity;
 import com.denzo.wakil.Util.Bookings;
 import com.denzo.wakil.Util.CurrentUser;
 import com.denzo.wakil.Util.Hotel;
@@ -31,32 +33,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private HotelsAdapter adapter;
-    Activity context;
+    private Activity context;
 
     private List<HotelView> hotelList;
     private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        context = this;
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         username = CurrentUser.username;
         initCollapsingToolbar();
+
+        TextView tvWelcome = findViewById(R.id.tv_welcome);
+        if (username != null) {
+            tvWelcome.setText(getString(R.string.welcome_user, username));
+        }
 
         recyclerView = findViewById(R.id.recycler_view);
 
         hotelList = new ArrayList<>();
         adapter = new HotelsAdapter(context, hotelList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(context,1);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(context, 1);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -71,18 +79,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Initializing collapsing toolbar
-     * Will show and hide the toolbar title on scroll
-     */
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+                findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        AppBarLayout appBarLayout = findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
 
-        // hiding & showing the title when toolbar expanded & collapsed
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
             int scrollRange = -1;
@@ -93,9 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle(context.getString(R.string.app_name));
+                    collapsingToolbar.setTitle(getString(R.string.app_name));
                     isShow = true;
-
                 } else if (isShow) {
                     collapsingToolbar.setTitle(" ");
                     isShow = false;
@@ -104,23 +106,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private Bookings getBooked(){
-        ArrayList<Bookings> bookings = Reader.getBookingsList(context.getApplicationContext());
-        if(bookings == null)
+    private Bookings getBooked() {
+        ArrayList<Bookings> bookings = Reader.getBookingsList(getApplicationContext());
+        if (bookings == null)
             return null;
-        for(Bookings book : bookings){
+        for (Bookings book : bookings) {
             String name = book.getName();
-            if(name == null) continue;
-            if(name.equals(username))
-            {
-
+            if (name == null) continue;
+            if (name.equals(username)) {
                 return book;
-
             }
         }
-
         return null;
     }
+
     private void prepareHotels() {
         int[] cover = {R.drawable.hicon1,
                 R.drawable.hicon2,
@@ -128,80 +127,85 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.hicon4};
         Random random = new Random();
         Bookings booking = getBooked();
-        HotelView hotelview ;
-        List<Hotel> hotels = Reader.getRestaurantList(context.getApplicationContext());
+        List<Hotel> hotels = Reader.getRestaurantList(getApplicationContext());
 
-        if(booking==null)
-        {
-            for(Hotel h : hotels) {
-                int idx = random.nextInt(12);
-                idx = idx%4;
-                hotelview = new HotelView(h.getName(),h.getLocation(),cover[idx],h.getRating(),h.getFeats());
-                hotelList.add(hotelview);
+        hotelList.clear();
+        if (booking == null) {
+            for (Hotel h : hotels) {
+                int idx = random.nextInt(4);
+                hotelList.add(new HotelView(h.getName(), h.getLocation(), cover[idx], h.getRating(), h.getFeats()));
             }
         } else {
             List<Integer> ids = booking.getId();
-            for(Hotel h : hotels) {
-                int idx = random.nextInt(12);
-                idx = idx%4;
-
-                if(!ids.contains(h.getId())) {
-                    hotelview = new HotelView(h.getName(), h.getLocation(), cover[idx], h.getRating(), h.getFeats());
-                    hotelList.add(hotelview);
+            for (Hotel h : hotels) {
+                int idx = random.nextInt(4);
+                if (!ids.contains(h.getId())) {
+                    hotelList.add(new HotelView(h.getName(), h.getLocation(), cover[idx], h.getRating(), h.getFeats()));
                 }
             }
         }
-        adapter.notifyDataSetChanged();
+        adapter.updateList(hotelList);
     }
 
-    /**
-     * RecyclerView item decoration - give equal margin around grid item
-     */
-
-
-    /**
-     * Converting dp to pixel
-     */
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
     @Override
     public void onBackPressed() {
-        context.finishAffinity();
-
-        System.exit(0);
+        finishAffinity();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_hotel, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.show_bookings:
-                Bookings booking = getBooked();
-                List<Hotel> hotels = Reader.getRestaurantList(context.getApplicationContext());
-                if(booking==null)
-                    Toast.makeText(context.getApplicationContext(),"No Bookings for you",Toast.LENGTH_LONG).show();
-                else {
-                    List<Integer> ids = booking.getId();
-                    String res = "";
-                    for(Hotel h : hotels) {
-
-                        if(ids.contains(h.getId())) {
-                            res = res + h.getName() +"\n";
-                        }
+        int id = item.getItemId();
+        if (id == R.id.show_bookings) {
+            Bookings booking = getBooked();
+            List<Hotel> hotels = Reader.getRestaurantList(getApplicationContext());
+            if (booking == null)
+                Toast.makeText(getApplicationContext(), R.string.no_bookings, Toast.LENGTH_LONG).show();
+            else {
+                List<Integer> ids = booking.getId();
+                StringBuilder res = new StringBuilder();
+                for (Hotel h : hotels) {
+                    if (ids.contains(h.getId())) {
+                        res.append(h.getName()).append("\n");
                     }
-                    Toast.makeText(context.getApplicationContext(),res,Toast.LENGTH_LONG).show();
                 }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+                Toast.makeText(getApplicationContext(), res.toString(), Toast.LENGTH_LONG).show();
+            }
+            return true;
+        } else if (id == R.id.action_logout) {
+            CurrentUser.username = null;
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
-
 }

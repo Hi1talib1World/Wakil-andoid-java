@@ -1,8 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
     <item
         android:id="@+id/show_bookings"
         android:orderInCategory="100"
-        android:title="Bookings" />
+        android:title="@string/show_bookings" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="101"
+        android:title="Logout" />
 </menu>

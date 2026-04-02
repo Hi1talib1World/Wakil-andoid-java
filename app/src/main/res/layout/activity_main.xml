@@ -26,8 +26,8 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/backdrop"
@@ -53,6 +53,7 @@
                         android:textSize="@dimen/backdrop_title" />
 
                     <TextView
+                        android:id="@+id/tv_welcome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/backdrop_subtitle"
@@ -62,13 +63,13 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <!--<androidx.appcompat.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
--->
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
