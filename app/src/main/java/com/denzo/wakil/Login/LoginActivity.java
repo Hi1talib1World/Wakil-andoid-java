@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.denzo.wakil.Database.AppDatabase;
+import com.denzo.wakil.Database.UserEntity;
 import com.denzo.wakil.MainActivity;
 import com.denzo.wakil.R;
 import com.denzo.wakil.Util.CurrentUser;
@@ -37,13 +39,22 @@ public class LoginActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                 Toast.makeText(this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
             } else {
-                // Simple hardcoded check for now
-                if (username.equals("admin") && password.equals("admin")) {
+                AppDatabase db = AppDatabase.getInstance(this);
+                UserEntity user = db.userDao().login(username, password);
+                
+                if (user != null) {
                     CurrentUser.username = username;
                     startActivity(new Intent(this, MainActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(this, R.string.invalid_credentials, Toast.LENGTH_SHORT).show();
+                    // Check for default admin
+                    if (username.equals("admin") && password.equals("admin")) {
+                        CurrentUser.username = username;
+                        startActivity(new Intent(this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(this, R.string.invalid_credentials, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
