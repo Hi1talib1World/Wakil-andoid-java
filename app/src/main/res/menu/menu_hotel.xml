@@ -3,7 +3,7 @@
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="Search"
+        android:title="@string/action_search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
     <item
@@ -11,7 +11,11 @@
         android:orderInCategory="100"
         android:title="@string/show_bookings" />
     <item
-        android:id="@+id/action_logout"
+        android:id="@+id/show_drafts"
         android:orderInCategory="101"
-        android:title="Logout" />
+        android:title="Saved for Later" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="102"
+        android:title="@string/action_logout" />
 </menu>
