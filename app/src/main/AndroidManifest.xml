@@ -32,6 +32,12 @@
             android:name=".HotelViewer"
             android:exported="false" />
 
+        <activity
+            android:name=".DraftsActivity"
+            android:exported="false"
+            android:label="Saved for Later"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>
