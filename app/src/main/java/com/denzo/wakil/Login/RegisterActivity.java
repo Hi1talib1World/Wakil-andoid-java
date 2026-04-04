@@ -1,6 +1,5 @@
 package com.denzo.wakil.Login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -10,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.denzo.wakil.Database.AppDatabase;
+import com.denzo.wakil.Database.UserEntity;
 import com.denzo.wakil.R;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -35,7 +36,14 @@ public class RegisterActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                 Toast.makeText(this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
             } else {
-                // For demonstration, just showing success and going back to login
+                AppDatabase db = AppDatabase.getInstance(this);
+                if (db.userDao().getUserByUsername(username) != null) {
+                    Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                db.userDao().insertUser(new UserEntity(username, password));
+
                 Toast.makeText(this, R.string.registration_success, Toast.LENGTH_SHORT).show();
                 finish();
             }
