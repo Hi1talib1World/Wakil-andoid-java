@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
+
 /* CLASS TO WRITE NEW DATA TO SHARED PREFERENCES.*/
 public class Writer {
     public static void writeBookings(Context context , ArrayList<Bookings> bookings) {
@@ -26,6 +28,14 @@ public class Writer {
         System.out.println(draftjson);
 
         editor.putString("drafts",draftjson);
+        editor.apply();
+    }
+
+    public static void writeUsers(Context context, List<UserModel> users) {
+        SharedPreferences pref = context.getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        String usersJson = new Gson().toJson(users);
+        editor.putString("registered_users", usersJson);
         editor.apply();
     }
 }
