@@ -5,13 +5,15 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {UserEntity.class, BookingEntity.class, DraftEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {UserEntity.class, BookingEntity.class, DraftEntity.class, HousePostEntity.class, BlockedEntity.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
 
     public abstract UserDao userDao();
     public abstract BookingDao bookingDao();
     public abstract DraftDao draftDao();
+    public abstract HousePostDao housePostDao();
+    public abstract BlockedDao blockedDao();
 
     public static synchronized AppDatabase getInstance(Context context) {
         if (instance == null) {
