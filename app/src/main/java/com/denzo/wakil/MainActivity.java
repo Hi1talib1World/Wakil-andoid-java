@@ -32,9 +32,13 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import com.denzo.wakil.Database.BlockedEntity;
+import com.denzo.wakil.Database.HousePostEntity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,10 +101,24 @@ public class MainActivity extends AppCompatActivity {
 
         prepareHotels();
 
+        FloatingActionButton fabAdd = findViewById(R.id.fab_add_post);
+        fabAdd.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, AddPostActivity.class));
+        });
+
         try {
             Glide.with(this).load(R.drawable.back).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        if (bottomNav.getSelectedItemId() == R.id.nav_home) {
+            prepareHotels();
         }
     }
 
@@ -178,20 +196,34 @@ public class MainActivity extends AppCompatActivity {
         int[] cover = {R.drawable.hicon1, R.drawable.hicon2, R.drawable.hicon3, R.drawable.hicon4};
         Random random = new Random();
         List<BookingEntity> bookings = db.bookingDao().getBookingsByUser(username);
+        List<String> blockedUsers = db.blockedDao().getBlockedUsers(username);
+        List<Integer> blockedPosts = db.blockedDao().getBlockedPosts(username);
+
         List<Hotel> hotels = Reader.getRestaurantList(getApplicationContext());
+        List<HousePostEntity> userPosts = db.housePostDao().getAllPosts();
 
         hotelList.clear();
+
+        // Add static hotels from JSON
         if (hotels != null) {
             List<Integer> bookedIds = new ArrayList<>();
             for (BookingEntity be : bookings) bookedIds.add(be.getHotelId());
-            
+
             for (Hotel h : hotels) {
-                int idx = random.nextInt(4);
-                if (!bookedIds.contains(h.getId())) {
-                    hotelList.add(new HotelView(h.getName(), h.getLocation(), cover[idx], h.getRating(), h.getFeats()));
+                if (!bookedIds.contains(h.getId()) && !blockedPosts.contains(h.getId())) {
+                    int idx = random.nextInt(4);
+                    hotelList.add(new HotelView(h.getId(), h.getName(), h.getLocation(), cover[idx], h.getRating(), h.getFeats(), h.getContact(), "admin"));
                 }
             }
         }
+
+        // Add user-generated posts
+        for (HousePostEntity p : userPosts) {
+            if (!blockedUsers.contains(p.getUsername()) && !blockedPosts.contains(p.getId())) {
+                hotelList.add(new HotelView(p.getId(), p.getTitle(), p.getLocation(), p.getThumbnail(), p.getRating(), p.getFeatures(), p.getContact(), p.getUsername()));
+            }
+        }
+
         adapter.updateList(hotelList);
     }
 
