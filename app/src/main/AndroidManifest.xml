@@ -38,6 +38,12 @@
             android:label="Saved for Later"
             android:parentActivityName=".MainActivity" />
 
+        <activity
+            android:name=".AddPostActivity"
+            android:exported="false"
+            android:label="Add New Post"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>
