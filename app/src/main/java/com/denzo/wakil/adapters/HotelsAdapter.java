@@ -19,6 +19,11 @@ import com.denzo.wakil.HotelViewer;
 import com.denzo.wakil.R;
 import com.denzo.wakil.Util.HotelView;
 
+import android.net.Uri;
+import android.widget.Toast;
+import com.denzo.wakil.Database.AppDatabase;
+import com.denzo.wakil.Database.BlockedEntity;
+import com.denzo.wakil.Util.CurrentUser;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +36,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, location, rating, features;
         public ImageView thumbnail;
-        public Button viewbutton;
+        public Button viewbutton, contactButton, shareButton, blockButton;
 
         public MyViewHolder(View view) {
             super(view);
@@ -41,6 +46,9 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
             rating = view.findViewById(R.id.rating);
             features = view.findViewById(R.id.features);
             viewbutton = view.findViewById(R.id.viewbutton);
+            contactButton = view.findViewById(R.id.btn_contact);
+            shareButton = view.findViewById(R.id.btn_share);
+            blockButton = view.findViewById(R.id.btn_block);
         }
     }
 
@@ -85,6 +93,39 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
                 intent.putExtra("hotelname", hotel.getName());
                 mCtx.startActivity(intent);
             }
+        });
+
+        holder.contactButton.setOnClickListener(v -> {
+            if (hotel.getContact() != null) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + hotel.getContact()));
+                mCtx.startActivity(intent);
+            } else {
+                Toast.makeText(mCtx, "Contact not available", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.shareButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this house!");
+            intent.putExtra(Intent.EXTRA_TEXT, "House: " + hotel.getName() + "\nLocation: " + hotel.getLocation());
+            mCtx.startActivity(Intent.createChooser(intent, "Share via"));
+        });
+
+        holder.blockButton.setOnClickListener(v -> {
+            AppDatabase db = AppDatabase.getInstance(mCtx);
+            new Thread(() -> {
+                db.blockedDao().insert(new BlockedEntity(CurrentUser.username, hotel.getOwnerUsername(), hotel.getId()));
+                ((android.app.Activity) mCtx).runOnUiThread(() -> {
+                    Toast.makeText(mCtx, "Content blocked", Toast.LENGTH_SHORT).show();
+                    int pos = holder.getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        hotelList.remove(pos);
+                        notifyItemRemoved(pos);
+                    }
+                });
+            }).start();
         });
     }
 
