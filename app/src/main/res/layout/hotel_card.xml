@@ -66,11 +66,49 @@
                 android:textSize="@dimen/location"
                 card_view:fontFamily="sans-serif-black" />
 
+            <LinearLayout
+                android:id="@+id/social_actions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/features"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <Button
+                    android:id="@+id/btn_contact"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Contact"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/btn_share"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Share"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/btn_block"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Block"
+                    android:textAllCaps="false"
+                    android:textColor="#FF0000" />
+            </LinearLayout>
+
             <Button
                 android:id="@+id/viewbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/thumbnail"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/ic_hotel_overflow_margin_top"
                 android:background="@drawable/round"
@@ -78,9 +116,7 @@
                 android:text="View"
                 android:textColor="#ffffff"
                 android:textSize="25dp"
-                android:typeface="monospace"
-
-                />
+                android:typeface="monospace" />
 
         </RelativeLayout>
 
