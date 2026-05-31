@@ -35,4 +35,8 @@
     <string name="toast_post_success">تم نشر المنزل بنجاح</string>
     <string name="toast_contact_unavailable">الاتصال غير متاح</string>
     <string name="share_via">مشاركة عبر</string>
+    <string name="label_location">الموقع: %1$s</string>
+    <string name="label_rating">التقييم: %1$s</string>
+    <string name="label_features">الميزات: %1$s</string>
+    <string name="btn_view">عرض</string>
 </resources>
