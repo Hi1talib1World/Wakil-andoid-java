@@ -60,11 +60,12 @@ fun OnboardingScreen() {
         OnboardingPage("Townhouse", "Elegant townhouses offering the perfect blend of style and comfort.", R.drawable.ic_townhouse)
     )
 
-    val pagerState = rememberPagerState { pages.size }
+    val pagerState = rememberPagerState()
     val scope = rememberCoroutineScope()
 
     Column(modifier = Modifier.fillMaxSize()) {
         HorizontalPager(
+            pageCount = pages.size,
             state = pagerState,
             modifier = Modifier
                 .weight(1f)
