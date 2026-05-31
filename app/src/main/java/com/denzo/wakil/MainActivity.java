@@ -130,13 +130,15 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
 
         if (allHotels != null) {
-            List<Integer> bookedIds = new ArrayList<>();
-            for (BookingEntity be : bookings) bookedIds.add(be.getHotelId());
-            
-            for (Hotel h : allHotels) {
-                if (bookedIds.contains(h.getId())) {
-                    int idx = random.nextInt(4);
-                    bookedList.add(new HotelView(h.getName(), h.getLocation(), cover[idx], h.getRating(), h.getFeats()));
+            for (BookingEntity be : bookings) {
+                for (Hotel h : allHotels) {
+                    if (be.getHotelId() == h.getId()) {
+                        int idx = random.nextInt(4);
+                        bookedList.add(new HotelView(h.getId(), h.getName(), h.getLocation(), cover[idx], 
+                                h.getRating(), h.getFeats(), h.getContact(), "admin", 
+                                be.getBookingDate(), be.getGuestsCount()));
+                        break;
+                    }
                 }
             }
         }
