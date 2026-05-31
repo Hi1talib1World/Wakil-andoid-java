@@ -113,7 +113,7 @@
                 android:layout_marginTop="@dimen/ic_hotel_overflow_margin_top"
                 android:background="@drawable/round"
                 android:scaleType="centerCrop"
-                android:text="View"
+                android:text="@string/btn_view"
                 android:textColor="#ffffff"
                 android:textSize="25dp"
                 android:typeface="monospace" />
