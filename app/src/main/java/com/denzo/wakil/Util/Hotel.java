@@ -57,7 +57,8 @@ public class Hotel {
         this.rating = rating;
     }
     public String getFeats() {
-        return features.get(0)+" , "+features.get(1);
-
+        if (features == null || features.isEmpty()) return "";
+        if (features.size() == 1) return features.get(0);
+        return features.get(0) + " , " + features.get(1);
     }
 }
