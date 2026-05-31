@@ -41,7 +41,7 @@
         <activity
             android:name=".AddPostActivity"
             android:exported="false"
-            android:label="Add New Post"
+            android:label="@string/add_post"
             android:parentActivityName=".MainActivity" />
 
     </application>
