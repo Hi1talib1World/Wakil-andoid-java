@@ -29,7 +29,7 @@ public class AddPostActivity extends AppCompatActivity {
             String features = etFeatures.getText().toString();
 
             if (title.isEmpty() || location.isEmpty() || contact.isEmpty()) {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -46,7 +46,7 @@ public class AddPostActivity extends AppCompatActivity {
             new Thread(() -> {
                 AppDatabase.getInstance(this).housePostDao().insert(post);
                 runOnUiThread(() -> {
-                    Toast.makeText(this, "House posted successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.toast_post_success, Toast.LENGTH_SHORT).show();
                     finish();
                 });
             }).start();
