@@ -3,6 +3,7 @@ package com.denzo.wakil
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -30,11 +31,13 @@ class OnboardingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = Color.White
-            ) {
-                OnboardingScreen()
+            MaterialTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = Color.White
+                ) {
+                    OnboardingScreen()
+                }
             }
         }
     }
@@ -92,7 +95,7 @@ fun OnboardingPageContent(page: OnboardingPage, isLastPage: Boolean) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Large circular blue line-art illustration placeholder
+        // Large circular blue line-art illustration
         Box(
             modifier = Modifier
                 .size(200.dp)
@@ -135,7 +138,7 @@ fun OnboardingPageContent(page: OnboardingPage, isLastPage: Boolean) {
                 onClick = { /* Learn more action */ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
                 shape = RoundedCornerShape(24.dp),
-                border = borderStroke(1.dp, Color(0xFF2563EB)),
+                border = BorderStroke(1.dp, Color(0xFF2563EB)),
                 modifier = Modifier.height(48.dp)
             ) {
                 Text(text = "Learn more", color = Color(0xFF2563EB))
@@ -182,7 +185,3 @@ fun BottomNavigationRow(
         }
     }
 }
-
-@Composable
-fun borderStroke(width: androidx.compose.ui.unit.Dp, color: Color) = 
-    androidx.compose.foundation.BorderStroke(width, color)
