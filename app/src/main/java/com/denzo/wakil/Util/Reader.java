@@ -36,23 +36,25 @@ public class Reader {
     public static List<Hotel> getRestaurantList(Context context) {
         ObjectMapper mapper = new ObjectMapper();
         String json = loadJSONFromAsset(context, "hotels.json");
+        if (json == null) return new ArrayList<>();
         try {
             return Arrays.asList(mapper.readValue(json, Hotel[].class));
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     public static User getUserList(Context context) {
         ObjectMapper mapper = new ObjectMapper();
         String json = loadJSONFromAsset(context, "users.json");
+        if (json == null) return new User();
         try {
             return (mapper.readValue(json, User.class));
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
-        return null;
+        return new User();
     }
 
     public static List<UserModel> getRegisteredUsers(Context context) {
