@@ -4,6 +4,9 @@
     <string name="backdrop_title">مرحباً بك في وكيل</string>
     <string name="backdrop_subtitle">ابحث عن أفضل إقامة</string>
     <string name="show_bookings">حجوزاتي</string>
+    <string name="action_search">بحث</string>
+    <string name="action_logout">تسجيل الخروج</string>
+    <string name="welcome_user">مرحباً، %1$s!</string>
 
     <!-- Login & Register -->
     <string name="login">تسجيل الدخول</string>
@@ -16,4 +19,20 @@
     <string name="registration_success">تم التسجيل بنجاح</string>
     <string name="fill_all_fields">يرجى ملء جميع الحقول</string>
     <string name="no_bookings">لا يوجد حجوزات لك</string>
+
+    <!-- Social Media Features -->
+    <string name="add_post">إضافة منشور جديد</string>
+    <string name="share_house_title">شارك منزلك</string>
+    <string name="hint_title">العنوان (مثلاً: فيلا مريحة)</string>
+    <string name="hint_location">الموقع</string>
+    <string name="hint_contact">رقم الاتصال</string>
+    <string name="hint_features">الميزات (واي فاي، مسبح، إلخ.)</string>
+    <string name="btn_post_house">نشر المنزل</string>
+    <string name="btn_contact">اتصال</string>
+    <string name="btn_share">مشاركة</string>
+    <string name="btn_block">حظر</string>
+    <string name="toast_content_blocked">تم حظر المحتوى</string>
+    <string name="toast_post_success">تم نشر المنزل بنجاح</string>
+    <string name="toast_contact_unavailable">الاتصال غير متاح</string>
+    <string name="share_via">مشاركة عبر</string>
 </resources>
