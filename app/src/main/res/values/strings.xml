@@ -40,4 +40,8 @@
     <string name="label_rating">Ratings: %1$s</string>
     <string name="label_features">Features: %1$s</string>
     <string name="btn_view">View</string>
+    <string name="btn_cancel_booking">Cancel Booking</string>
+    <string name="toast_booking_cancelled">Booking cancelled</string>
+    <string name="label_booking_date">Booked on: %1$s</string>
+    <string name="label_guests">Guests: %1$d</string>
 </resources>
