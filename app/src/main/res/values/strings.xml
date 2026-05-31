@@ -35,4 +35,8 @@
     <string name="toast_post_success">House posted successfully</string>
     <string name="toast_contact_unavailable">Contact not available</string>
     <string name="share_via">Share via</string>
+    <string name="label_location">Location: %1$s</string>
+    <string name="label_rating">Ratings: %1$s</string>
+    <string name="label_features">Features: %1$s</string>
+    <string name="btn_view">View</string>
 </resources>
