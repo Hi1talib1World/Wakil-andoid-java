@@ -9,6 +9,9 @@ public class HotelView {
     private String features;
     private String contact; // Added for social contact
     private String ownerUsername; // Added to identify who posted it
+    private String bookingDate;
+    private int guestsCount;
+    private boolean isBooked;
 
     public HotelView(){
     }
@@ -30,6 +33,13 @@ public class HotelView {
         this.features = features;
         this.contact = contact;
         this.ownerUsername = ownerUsername;
+    }
+
+    public HotelView(int id, String name, String location, int thumbnail, int rating, String features, String contact, String ownerUsername, String bookingDate, int guestsCount) {
+        this(id, name, location, thumbnail, rating, features, contact, ownerUsername);
+        this.bookingDate = bookingDate;
+        this.guestsCount = guestsCount;
+        this.isBooked = true;
     }
 
     public int getId() { return id; }
@@ -80,4 +90,13 @@ public class HotelView {
 
     public String getOwnerUsername() { return ownerUsername; }
     public void setOwnerUsername(String ownerUsername) { this.ownerUsername = ownerUsername; }
+
+    public String getBookingDate() { return bookingDate; }
+    public void setBookingDate(String bookingDate) { this.bookingDate = bookingDate; }
+
+    public int getGuestsCount() { return guestsCount; }
+    public void setGuestsCount(int guestsCount) { this.guestsCount = guestsCount; }
+
+    public boolean isBooked() { return isBooked; }
+    public void setBooked(boolean booked) { isBooked = booked; }
 }
