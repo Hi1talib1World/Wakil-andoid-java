@@ -3,6 +3,7 @@ package com.denzo.wakil.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.denzo.wakil.BuildConfig;
 import com.denzo.wakil.Database.AppDatabase;
 import com.denzo.wakil.Database.UserEntity;
 import com.denzo.wakil.MainActivity;
@@ -19,7 +21,7 @@ import com.denzo.wakil.Util.CurrentUser;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etUsername, etPassword;
-    private Button btnLogin;
+    private Button btnLogin, btnSkip;
     private TextView tvRegister;
 
     @Override
@@ -31,6 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
         tvRegister = findViewById(R.id.tv_register);
+        btnSkip = findViewById(R.id.btn_skip);
+
+        if (BuildConfig.DEBUG) {
+            btnSkip.setVisibility(View.VISIBLE);
+            btnSkip.setOnClickListener(view -> {
+                CurrentUser.username = "debug_user";
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+            });
+        }
 
         btnLogin.setOnClickListener(view -> {
             String username = etUsername.getText().toString().trim();
