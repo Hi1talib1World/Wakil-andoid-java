@@ -77,12 +77,9 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         final HotelView hotel = hotelList.get(position);
         holder.title.setText(hotel.getName());
-        String locationText = "Location: " + hotel.getLocation();
-        holder.location.setText(locationText);
-        String ratingText = "Ratings: " + hotel.getRating();
-        holder.rating.setText(ratingText);
-        String featuresText = "Features: " + hotel.getFeatures();
-        holder.features.setText(featuresText);
+        holder.location.setText(mCtx.getString(R.string.label_location, hotel.getLocation()));
+        holder.rating.setText(mCtx.getString(R.string.label_rating, String.valueOf(hotel.getRating())));
+        holder.features.setText(mCtx.getString(R.string.label_features, hotel.getFeatures()));
 
         Glide.with(mCtx).load(hotel.getThumbnail()).into(holder.thumbnail);
 
@@ -101,16 +98,18 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
                 intent.setData(Uri.parse("tel:" + hotel.getContact()));
                 mCtx.startActivity(intent);
             } else {
-                Toast.makeText(mCtx, "Contact not available", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mCtx, R.string.toast_contact_unavailable, Toast.LENGTH_SHORT).show();
             }
         });
 
         holder.shareButton.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Check out this house!");
-            intent.putExtra(Intent.EXTRA_TEXT, "House: " + hotel.getName() + "\nLocation: " + hotel.getLocation());
-            mCtx.startActivity(Intent.createChooser(intent, "Share via"));
+            String shareMessage = mCtx.getString(R.string.share_house_title) + ": " + hotel.getName() + "\n" +
+                                mCtx.getString(R.string.hint_location) + ": " + hotel.getLocation();
+            intent.putExtra(Intent.EXTRA_SUBJECT, mCtx.getString(R.string.share_house_title));
+            intent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            mCtx.startActivity(Intent.createChooser(intent, mCtx.getString(R.string.share_via)));
         });
 
         holder.blockButton.setOnClickListener(v -> {
@@ -118,7 +117,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
             new Thread(() -> {
                 db.blockedDao().insert(new BlockedEntity(CurrentUser.username, hotel.getOwnerUsername(), hotel.getId()));
                 ((android.app.Activity) mCtx).runOnUiThread(() -> {
-                    Toast.makeText(mCtx, "Content blocked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mCtx, R.string.toast_content_blocked, Toast.LENGTH_SHORT).show();
                     int pos = holder.getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
                         hotelList.remove(pos);
