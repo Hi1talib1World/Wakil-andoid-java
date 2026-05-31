@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Contact"
+                    android:text="@string/btn_contact"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary" />
 
@@ -90,7 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Share"
+                    android:text="@string/btn_share"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary" />
 
@@ -100,7 +100,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Block"
+                    android:text="@string/btn_block"
                     android:textAllCaps="false"
                     android:textColor="#FF0000" />
             </LinearLayout>
