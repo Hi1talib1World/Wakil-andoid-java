@@ -103,6 +103,17 @@
                     android:text="@string/btn_block"
                     android:textAllCaps="false"
                     android:textColor="#FF0000" />
+
+                <Button
+                    android:id="@+id/btn_cancel_booking"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btn_cancel_booking"
+                    android:textAllCaps="false"
+                    android:textColor="#FF0000"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <Button
