@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Share Your House"
+        android:text="@string/share_house_title"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="24dp"/>
@@ -17,32 +17,39 @@
         android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title (e.g. Cozy Villa)"/>
+        android:hint="@string/hint_title"
+        android:inputType="textCapWords"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/et_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Location"/>
+        android:hint="@string/hint_location"
+        android:inputType="textPostalAddress"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/et_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contact Number"
-        android:inputType="phone"/>
+        android:hint="@string/hint_contact"
+        android:inputType="phone"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/et_features"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Features (Wifi, Pool, etc.)"/>
+        android:hint="@string/hint_features"
+        android:inputType="text"
+        android:importantForAutofill="no"/>
 
     <Button
         android:id="@+id/btn_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Post House"
+        android:text="@string/btn_post_house"
         android:layout_marginTop="24dp"/>
 
 </LinearLayout>
