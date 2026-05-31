@@ -34,9 +34,9 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
     private List<HotelView> hotelListFull;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, location, rating, features;
+        public TextView title, location, rating, features, bookingInfo;
         public ImageView thumbnail;
-        public Button viewbutton, contactButton, shareButton, blockButton;
+        public Button viewbutton, contactButton, shareButton, blockButton, cancelButton;
 
         public MyViewHolder(View view) {
             super(view);
@@ -45,10 +45,12 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
             thumbnail = view.findViewById(R.id.thumbnail);
             rating = view.findViewById(R.id.rating);
             features = view.findViewById(R.id.features);
+            bookingInfo = view.findViewById(R.id.booking_info);
             viewbutton = view.findViewById(R.id.viewbutton);
             contactButton = view.findViewById(R.id.btn_contact);
             shareButton = view.findViewById(R.id.btn_share);
             blockButton = view.findViewById(R.id.btn_block);
+            cancelButton = view.findViewById(R.id.btn_cancel_booking);
         }
     }
 
@@ -80,6 +82,17 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
         holder.location.setText(mCtx.getString(R.string.label_location, hotel.getLocation()));
         holder.rating.setText(mCtx.getString(R.string.label_rating, String.valueOf(hotel.getRating())));
         holder.features.setText(mCtx.getString(R.string.label_features, hotel.getFeatures()));
+
+        if (hotel.isBooked()) {
+            holder.bookingInfo.setVisibility(View.VISIBLE);
+            String info = mCtx.getString(R.string.label_booking_date, hotel.getBookingDate()) + 
+                        "\n" + mCtx.getString(R.string.label_guests, hotel.getGuestsCount());
+            holder.bookingInfo.setText(info);
+            holder.cancelButton.setVisibility(View.VISIBLE);
+        } else {
+            holder.bookingInfo.setVisibility(View.GONE);
+            holder.cancelButton.setVisibility(View.GONE);
+        }
 
         Glide.with(mCtx).load(hotel.getThumbnail()).into(holder.thumbnail);
 
@@ -124,6 +137,24 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
                         notifyItemRemoved(pos);
                     }
                 });
+            }).start();
+        });
+
+        holder.cancelButton.setOnClickListener(v -> {
+            AppDatabase db = AppDatabase.getInstance(mCtx);
+            new Thread(() -> {
+                com.denzo.wakil.Database.BookingEntity booking = db.bookingDao().getSpecificBooking(CurrentUser.username, hotel.getId());
+                if (booking != null) {
+                    db.bookingDao().deleteBooking(booking);
+                    ((android.app.Activity) mCtx).runOnUiThread(() -> {
+                        Toast.makeText(mCtx, R.string.toast_booking_cancelled, Toast.LENGTH_SHORT).show();
+                        int pos = holder.getAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION) {
+                            hotelList.remove(pos);
+                            notifyItemRemoved(pos);
+                        }
+                    });
+                }
             }).start();
         });
     }
