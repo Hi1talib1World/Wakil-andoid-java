@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Grand Palace Hotel",
+    "location": "Downtown, City Center",
+    "contact": "+1234567890",
+    "rating": 5,
+    "features": ["Free Wifi", "Swimming Pool", "Gym", "Breakfast Included"]
+  },
+  {
+    "id": 2,
+    "name": "Cozy Stay Apartment",
+    "location": "Residential Area, Westside",
+    "contact": "+0987654321",
+    "rating": 4,
+    "features": ["Kitchenette", "Free Parking", "Pet Friendly", "Balcony"]
+  }
+]
