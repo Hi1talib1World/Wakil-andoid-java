@@ -175,7 +175,8 @@ public class HotelViewer extends AppCompatActivity {
 
         viewbook.setOnClickListener(v -> {
             if(viewbook.getText().toString().equalsIgnoreCase("book")) {
-                db.bookingDao().insertBooking(new BookingEntity(CurrentUser.username, hotel.getId()));
+                String currentDate = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault()).format(new java.util.Date());
+                db.bookingDao().insertBooking(new BookingEntity(CurrentUser.username, hotel.getId(), currentDate, 2, "None"));
                 viewbook.setText("Booked");
                 Toast.makeText(this, "Hotel Booked!", Toast.LENGTH_SHORT).show();
             } else {
