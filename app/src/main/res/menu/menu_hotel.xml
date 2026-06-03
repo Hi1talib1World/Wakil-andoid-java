@@ -15,7 +15,11 @@
         android:orderInCategory="101"
         android:title="Saved for Later" />
     <item
-        android:id="@+id/action_logout"
+        android:id="@+id/action_settings"
         android:orderInCategory="102"
+        android:title="@string/action_settings" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="103"
         android:title="@string/action_logout" />
 </menu>
