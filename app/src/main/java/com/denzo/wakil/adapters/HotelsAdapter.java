@@ -85,8 +85,10 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
 
         if (hotel.isBooked()) {
             holder.bookingInfo.setVisibility(View.VISIBLE);
-            String info = mCtx.getString(R.string.label_booking_date, hotel.getBookingDate()) + 
-                        "\n" + mCtx.getString(R.string.label_guests, hotel.getGuestsCount());
+            String info = "Check-in: " + hotel.getCheckInDate() + "\n" +
+                        "Check-out: " + hotel.getCheckOutDate() + "\n" +
+                        "Guests: " + hotel.getGuestsCount() + " | Total: $" + hotel.getTotalPrice() + "\n" +
+                        "Status: " + hotel.getStatus();
             holder.bookingInfo.setText(info);
             holder.cancelButton.setVisibility(View.VISIBLE);
         } else {
