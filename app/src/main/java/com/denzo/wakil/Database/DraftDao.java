@@ -21,4 +21,7 @@ public interface DraftDao {
 
     @Delete
     void deleteDraft(DraftEntity draft);
+
+    @Query("DELETE FROM drafts WHERE username = :username")
+    void clearAllDrafts(String username);
 }
