@@ -134,9 +134,21 @@ public class MainActivity extends AppCompatActivity {
                 for (Hotel h : allHotels) {
                     if (be.getHotelId() == h.getId()) {
                         int idx = random.nextInt(4);
-                        bookedList.add(new HotelView(h.getId(), h.getName(), h.getLocation(), cover[idx], 
-                                h.getRating(), h.getFeats(), h.getContact(), "admin", 
-                                be.getBookingDate(), be.getGuestsCount()));
+                        bookedList.add(new HotelView(
+                                h.getId(), 
+                                h.getName(), 
+                                h.getLocation(), 
+                                cover[idx], 
+                                h.getRating(), 
+                                h.getFeats(), 
+                                h.getContact(), 
+                                "admin", 
+                                be.getCheckInDate(), 
+                                be.getCheckOutDate(), 
+                                be.getGuestsCount(), 
+                                be.getTotalPrice(), 
+                                be.getStatus()
+                        ));
                         break;
                     }
                 }
