@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -162,10 +163,18 @@ public class HotelViewer extends AppCompatActivity {
         viewfeature.setText("Features: "+hotel.getFeats());
         viewrating.setText("User Rating: "+hotel.getRating());
         viewcontact.setText("Contact: "+hotel.getContact());
+        
+        TextView tvTotalPrice = findViewById(R.id.tv_total_price);
+        EditText etCheckIn = findViewById(R.id.et_checkin);
+        EditText etCheckOut = findViewById(R.id.et_checkout);
+        EditText etGuests = findViewById(R.id.et_guests);
+
+        tvTotalPrice.setText(String.format(java.util.Locale.US, "Total Price: $%.2f", hotel.getPricePerNight()));
 
         // Check if already booked
         if (db.bookingDao().getSpecificBooking(CurrentUser.username, hotel.getId()) != null) {
             viewbook.setText("Booked");
+            findViewById(R.id.layout_booking_inputs).setVisibility(View.GONE);
         }
 
         // Check if already saved
@@ -175,9 +184,33 @@ public class HotelViewer extends AppCompatActivity {
 
         viewbook.setOnClickListener(v -> {
             if(viewbook.getText().toString().equalsIgnoreCase("book")) {
-                String currentDate = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault()).format(new java.util.Date());
-                db.bookingDao().insertBooking(new BookingEntity(CurrentUser.username, hotel.getId(), currentDate, 2, "None"));
+                String checkIn = etCheckIn.getText().toString();
+                String checkOut = etCheckOut.getText().toString();
+                String guestsStr = etGuests.getText().toString();
+
+                if (checkIn.isEmpty() || checkOut.isEmpty()) {
+                    Toast.makeText(this, "Please select dates", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                int guests = guestsStr.isEmpty() ? 1 : Integer.parseInt(guestsStr);
+                
+                // Simple price calculation (could be improved with real date diff)
+                double total = hotel.getPricePerNight() * guests; 
+
+                db.bookingDao().insertBooking(new BookingEntity(
+                        CurrentUser.username, 
+                        hotel.getId(), 
+                        checkIn, 
+                        checkOut, 
+                        guests, 
+                        "None", 
+                        total, 
+                        "Confirmed"
+                ));
+
                 viewbook.setText("Booked");
+                findViewById(R.id.layout_booking_inputs).setVisibility(View.GONE);
                 Toast.makeText(this, "Hotel Booked!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Already Booked", Toast.LENGTH_SHORT).show();
