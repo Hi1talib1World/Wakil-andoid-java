@@ -44,6 +44,12 @@
             android:label="@string/add_post"
             android:parentActivityName=".MainActivity" />
 
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/action_settings"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>
