@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,6 +57,14 @@ public class HotelViewer extends AppCompatActivity {
         setContentView(R.layout.activity_hotel_viewer);
         
         db = AppDatabase.getInstance(this);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
         
         Intent intent = getIntent();
         hotelName = intent.getStringExtra("hotelname");
