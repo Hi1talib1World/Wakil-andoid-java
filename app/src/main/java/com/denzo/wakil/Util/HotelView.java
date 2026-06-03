@@ -9,8 +9,11 @@ public class HotelView {
     private String features;
     private String contact; // Added for social contact
     private String ownerUsername; // Added to identify who posted it
-    private String bookingDate;
+    private String checkInDate;
+    private String checkOutDate;
     private int guestsCount;
+    private double totalPrice;
+    private String status;
     private boolean isBooked;
 
     public HotelView(){
@@ -35,10 +38,13 @@ public class HotelView {
         this.ownerUsername = ownerUsername;
     }
 
-    public HotelView(int id, String name, String location, int thumbnail, int rating, String features, String contact, String ownerUsername, String bookingDate, int guestsCount) {
+    public HotelView(int id, String name, String location, int thumbnail, int rating, String features, String contact, String ownerUsername, String checkInDate, String checkOutDate, int guestsCount, double totalPrice, String status) {
         this(id, name, location, thumbnail, rating, features, contact, ownerUsername);
-        this.bookingDate = bookingDate;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.guestsCount = guestsCount;
+        this.totalPrice = totalPrice;
+        this.status = status;
         this.isBooked = true;
     }
 
@@ -91,11 +97,20 @@ public class HotelView {
     public String getOwnerUsername() { return ownerUsername; }
     public void setOwnerUsername(String ownerUsername) { this.ownerUsername = ownerUsername; }
 
-    public String getBookingDate() { return bookingDate; }
-    public void setBookingDate(String bookingDate) { this.bookingDate = bookingDate; }
+    public String getCheckInDate() { return checkInDate; }
+    public void setCheckInDate(String checkInDate) { this.checkInDate = checkInDate; }
+
+    public String getCheckOutDate() { return checkOutDate; }
+    public void setCheckOutDate(String checkOutDate) { this.checkOutDate = checkOutDate; }
 
     public int getGuestsCount() { return guestsCount; }
     public void setGuestsCount(int guestsCount) { this.guestsCount = guestsCount; }
+
+    public double getTotalPrice() { return totalPrice; }
+    public void setTotalPrice(double totalPrice) { this.totalPrice = totalPrice; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
     public boolean isBooked() { return isBooked; }
     public void setBooked(boolean booked) { isBooked = booked; }
