@@ -5,6 +5,7 @@
     "location": "Downtown, City Center",
     "contact": "+1234567890",
     "rating": 5,
+    "pricePerNight": 150.0,
     "features": ["Free Wifi", "Swimming Pool", "Gym", "Breakfast Included"]
   },
   {
@@ -13,6 +14,7 @@
     "location": "Residential Area, Westside",
     "contact": "+0987654321",
     "rating": 4,
+    "pricePerNight": 85.0,
     "features": ["Kitchenette", "Free Parking", "Pet Friendly", "Balcony"]
   }
 ]
