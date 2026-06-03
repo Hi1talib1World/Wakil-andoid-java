@@ -21,4 +21,7 @@ public interface BookingDao {
 
     @Delete
     void deleteBooking(BookingEntity booking);
+
+    @Query("DELETE FROM bookings WHERE username = :username")
+    void clearAllBookings(String username);
 }
