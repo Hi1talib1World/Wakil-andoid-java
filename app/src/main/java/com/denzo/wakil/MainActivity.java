@@ -39,7 +39,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,14 +49,15 @@ public class MainActivity extends AppCompatActivity {
     private List<HotelView> hotelList;
     private String username;
     private AppBarLayout appBarLayout;
-    private AppDatabase db;
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-        db = AppDatabase.getInstance(this);
+        
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,16 +81,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+        viewModel.hotels.observe(this, hotels -> {
+            hotelList.clear();
+            hotelList.addAll(hotels);
+            adapter.updateList(hotelList);
+        });
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
                 appBarLayout.setExpanded(true);
-                prepareHotels();
+                viewModel.loadHotels(username);
                 return true;
             } else if (id == R.id.nav_bookings) {
                 appBarLayout.setExpanded(false);
-                showMyBookings();
+                viewModel.loadMyBookings(username);
                 return true;
             } else if (id == R.id.nav_saved) {
                 appBarLayout.setExpanded(false);
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        prepareHotels();
+        viewModel.loadHotels(username);
 
         FloatingActionButton fabAdd = findViewById(R.id.fab_add_post);
         fabAdd.setOnClickListener(v -> {
@@ -119,49 +125,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         if (bottomNav.getSelectedItemId() == R.id.nav_home) {
-            prepareHotels();
-        }
-    }
-
-    private void showMyBookings() {
-        List<BookingEntity> bookings = db.bookingDao().getBookingsByUser(username);
-        List<Hotel> allHotels = Reader.getRestaurantList(this);
-        List<HotelView> bookedList = new ArrayList<>();
-        int[] cover = {R.drawable.hicon1, R.drawable.hicon2, R.drawable.hicon3, R.drawable.hicon4};
-        Random random = new Random();
-
-        if (allHotels != null) {
-            for (BookingEntity be : bookings) {
-                for (Hotel h : allHotels) {
-                    if (be.getHotelId() == h.getId()) {
-                        int idx = random.nextInt(4);
-                        bookedList.add(new HotelView(
-                                h.getId(), 
-                                h.getName(), 
-                                h.getLocation(), 
-                                cover[idx], 
-                                h.getRating(), 
-                                h.getFeats(), 
-                                h.getContact(), 
-                                "admin", 
-                                be.getCheckInDate(), 
-                                be.getCheckOutDate(), 
-                                be.getGuestsCount(), 
-                                be.getTotalPrice(), 
-                                be.getStatus()
-                        ));
-                        break;
-                    }
-                }
-            }
-        }
-        adapter.updateList(bookedList);
-        if (bookedList.isEmpty()) {
-            Toast.makeText(this, R.string.no_bookings, Toast.LENGTH_SHORT).show();
+            viewModel.loadHotels(username);
         }
     }
 
     private void showSavedDrafts() {
+        AppDatabase db = AppDatabase.getInstance(this);
         List<DraftEntity> drafts = db.draftDao().getDraftsByUser(username);
         List<Hotel> allHotels = Reader.getRestaurantList(this);
         List<HotelView> draftsList = new ArrayList<>();
@@ -205,41 +174,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void prepareHotels() {
-        int[] cover = {R.drawable.hicon1, R.drawable.hicon2, R.drawable.hicon3, R.drawable.hicon4};
-        Random random = new Random();
-        List<BookingEntity> bookings = db.bookingDao().getBookingsByUser(username);
-        List<String> blockedUsers = db.blockedDao().getBlockedUsers(username);
-        List<Integer> blockedPosts = db.blockedDao().getBlockedPosts(username);
-
-        List<Hotel> hotels = Reader.getRestaurantList(getApplicationContext());
-        List<HousePostEntity> userPosts = db.housePostDao().getAllPosts();
-
-        hotelList.clear();
-
-        // Add static hotels from JSON
-        if (hotels != null) {
-            List<Integer> bookedIds = new ArrayList<>();
-            for (BookingEntity be : bookings) bookedIds.add(be.getHotelId());
-
-            for (Hotel h : hotels) {
-                if (!bookedIds.contains(h.getId()) && !blockedPosts.contains(h.getId())) {
-                    int idx = random.nextInt(4);
-                    hotelList.add(new HotelView(h.getId(), h.getName(), h.getLocation(), cover[idx], h.getRating(), h.getFeats(), h.getContact(), "admin"));
-                }
-            }
-        }
-
-        // Add user-generated posts
-        for (HousePostEntity p : userPosts) {
-            if (!blockedUsers.contains(p.getUsername()) && !blockedPosts.contains(p.getId())) {
-                hotelList.add(new HotelView(p.getId(), p.getTitle(), p.getLocation(), p.getThumbnail(), p.getRating(), p.getFeatures(), p.getContact(), p.getUsername()));
-            }
-        }
-
-        adapter.updateList(hotelList);
     }
 
     private int dpToPx(int dp) {
