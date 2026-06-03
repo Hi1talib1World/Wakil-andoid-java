@@ -9,6 +9,8 @@ public class Hotel {
     private String location;
     private List<String> features;
     private int rating;
+    private double pricePerNight;
+
     public String getContact() {
         return contact;
     }
@@ -56,6 +58,15 @@ public class Hotel {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    public double getPricePerNight() {
+        return pricePerNight;
+    }
+
+    public void setPricePerNight(double pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
+
     public String getFeats() {
         if (features == null || features.isEmpty()) return "";
         if (features.size() == 1) return features.get(0);
