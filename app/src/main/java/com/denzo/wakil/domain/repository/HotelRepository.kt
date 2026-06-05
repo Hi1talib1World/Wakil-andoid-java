@@ -12,5 +12,5 @@ interface HotelRepository {
     fun deleteBooking(booking: BookingEntity, onComplete: (() -> Unit)?)
     fun clearAllBookings(username: String, onComplete: (() -> Unit)?)
     fun getBlockedUsers(username: String): List<String>
-    fun getBlockedPosts(username: String): List<Integer>
+    fun getBlockedPosts(username: String): List<Int>
 }
