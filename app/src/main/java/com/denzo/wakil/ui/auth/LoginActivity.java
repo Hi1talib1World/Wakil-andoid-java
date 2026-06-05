@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.denzo.wakil.BuildConfig;
 import com.denzo.wakil.Database.AppDatabase;
 import com.denzo.wakil.Database.UserEntity;
-import com.denzo.wakil.MainActivity;
+import com.denzo.wakil.ui.home.MainActivity;
 import com.denzo.wakil.R;
 import com.denzo.wakil.Util.CurrentUser;
 
