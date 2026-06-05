@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
-        card_view:cardCornerRadius="@dimen/card_hotel_radius">
+        app:cardCornerRadius="@dimen/card_hotel_radius">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                 android:paddingBottom="@dimen/hotel_rating_padding_bottom"
                 android:textColor="@android:color/background_light"
                 android:textSize="@dimen/location"
-                card_view:fontFamily="sans-serif-black" />
+                app:fontFamily="sans-serif-black" />
 
             <TextView
                 android:id="@+id/booking_info"
@@ -85,62 +85,56 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/features"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:padding="4dp">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_contact"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="@style/Widget.Material3.Button.TonalButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:padding="0dp"
                     android:text="@string/btn_contact"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary" />
+                    android:textSize="10sp"
+                    app:iconSize="16dp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_share"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="@style/Widget.Material3.Button.TonalButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:padding="0dp"
                     android:text="@string/btn_share"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary" />
+                    android:textSize="10sp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_block"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="@style/Widget.Material3.Button.TonalButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:padding="0dp"
                     android:text="@string/btn_block"
-                    android:textAllCaps="false"
-                    android:textColor="#FF0000" />
+                    android:textColor="#FF0000"
+                    android:textSize="10sp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_cancel_booking"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="@style/Widget.Material3.Button.TonalButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:padding="0dp"
                     android:text="@string/btn_cancel_booking"
-                    android:textAllCaps="false"
                     android:textColor="#FF0000"
+                    android:textSize="10sp"
                     android:visibility="gone" />
             </LinearLayout>
-
-            <Button
-                android:id="@+id/viewbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/ic_hotel_overflow_margin_top"
-                android:background="@drawable/round"
-                android:scaleType="centerCrop"
-                android:text="@string/btn_view"
-                android:textColor="#ffffff"
-                android:textSize="25dp"
-                android:typeface="monospace" />
 
         </RelativeLayout>
 
