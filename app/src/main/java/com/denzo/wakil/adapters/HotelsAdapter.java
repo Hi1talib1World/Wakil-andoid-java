@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.denzo.wakil.HotelViewer;
+import com.denzo.wakil.ui.booking.HotelViewer;
 import com.denzo.wakil.R;
 import com.denzo.wakil.Util.HotelView;
 
@@ -36,17 +36,18 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, location, rating, features, bookingInfo;
         public ImageView thumbnail;
-        public Button viewbutton, contactButton, shareButton, blockButton, cancelButton;
+        public Button contactButton, shareButton, blockButton, cancelButton;
+        public View cardView;
 
         public MyViewHolder(View view) {
             super(view);
+            cardView = view.findViewById(R.id.card_view);
             title = view.findViewById(R.id.title);
             location = view.findViewById(R.id.location);
             thumbnail = view.findViewById(R.id.thumbnail);
             rating = view.findViewById(R.id.rating);
             features = view.findViewById(R.id.features);
             bookingInfo = view.findViewById(R.id.booking_info);
-            viewbutton = view.findViewById(R.id.viewbutton);
             contactButton = view.findViewById(R.id.btn_contact);
             shareButton = view.findViewById(R.id.btn_share);
             blockButton = view.findViewById(R.id.btn_block);
@@ -98,7 +99,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
 
         Glide.with(mCtx).load(hotel.getThumbnail()).into(holder.thumbnail);
 
-        holder.viewbutton.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mCtx, HotelViewer.class);
