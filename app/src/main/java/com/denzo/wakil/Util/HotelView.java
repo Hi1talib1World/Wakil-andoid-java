@@ -14,6 +14,7 @@ public class HotelView {
     private int guestsCount;
     private double totalPrice;
     private String status;
+    private double pricePerNight;
     private boolean isBooked;
 
     public HotelView(){
@@ -36,6 +37,11 @@ public class HotelView {
         this.features = features;
         this.contact = contact;
         this.ownerUsername = ownerUsername;
+    }
+
+    public HotelView(int id, String name, String location, int thumbnail, int rating, String features, String contact, String ownerUsername, double pricePerNight) {
+        this(id, name, location, thumbnail, rating, features, contact, ownerUsername);
+        this.pricePerNight = pricePerNight;
     }
 
     public HotelView(int id, String name, String location, int thumbnail, int rating, String features, String contact, String ownerUsername, String checkInDate, String checkOutDate, int guestsCount, double totalPrice, String status) {
@@ -111,6 +117,9 @@ public class HotelView {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public double getPricePerNight() { return pricePerNight; }
+    public void setPricePerNight(double pricePerNight) { this.pricePerNight = pricePerNight; }
 
     public boolean isBooked() { return isBooked; }
     public void setBooked(boolean booked) { isBooked = booked; }
