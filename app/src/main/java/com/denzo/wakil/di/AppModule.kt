@@ -2,8 +2,11 @@ package com.denzo.wakil.di
 
 import android.content.Context
 import com.denzo.wakil.Database.*
+import com.denzo.wakil.Util.SessionManager
 import com.denzo.wakil.data.repository.HotelRepositoryImpl
+import com.denzo.wakil.data.repository.UserRepositoryImpl
 import com.denzo.wakil.domain.repository.HotelRepository
+import com.denzo.wakil.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,5 +49,17 @@ object AppModule {
         blockedDao: BlockedDao
     ): HotelRepository {
         return HotelRepositoryImpl(context, bookingDao, housePostDao, draftDao, blockedDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(userDao: UserDao): UserRepository {
+        return UserRepositoryImpl(userDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSessionManager(@ApplicationContext context: Context): SessionManager {
+        return SessionManager(context)
     }
 }
