@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
-        card_view:cardCornerRadius="@dimen/card_hotel_radius">
+        app:cardCornerRadius="@dimen/card_hotel_radius">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -69,18 +69,8 @@
                 android:paddingRight="@dimen/hotel_title_padding"
                 android:paddingBottom="@dimen/hotel_rating_padding_bottom"
                 android:textSize="@dimen/location"
-                card_view:fontFamily="sans-serif-black" />
+                app:fontFamily="sans-serif-black" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/rec_viewbutton"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rec_features"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="8dp"
-                android:text="View"
-                android:textSize="12sp" />
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
