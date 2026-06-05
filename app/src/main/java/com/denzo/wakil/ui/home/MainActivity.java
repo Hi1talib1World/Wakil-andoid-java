@@ -30,9 +30,9 @@ import com.denzo.wakil.Util.Hotel;
 import com.denzo.wakil.Util.HotelView;
 import com.denzo.wakil.Util.Reader;
 import com.denzo.wakil.adapters.HotelsAdapter;
-import com.denzo.wakil.MainViewModel;
-import com.denzo.wakil.AddPostActivity;
-import com.denzo.wakil.SettingsActivity;
+import com.denzo.wakil.viewmodel.MainViewModel;
+import com.denzo.wakil.ui.home.AddPostActivity;
+import com.denzo.wakil.ui.profile.SettingsActivity;
 import com.denzo.wakil.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        viewModel.hotels.observe(this, hotels -> {
+        viewModel.getHotels().observe(this, hotels -> {
             hotelList.clear();
             hotelList.addAll(hotels);
             adapter.updateList(hotelList);
