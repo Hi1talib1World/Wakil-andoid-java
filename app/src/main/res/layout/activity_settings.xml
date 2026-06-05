@@ -38,7 +38,10 @@
                 android:layout_height="wrap_content"
                 android:text="Clear All Bookings"
                 android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:paddingVertical="4dp"
                 app:icon="@android:drawable/ic_menu_delete"
+                app:iconSize="18dp"
                 app:iconTint="#FF0000" />
 
             <com.google.android.material.button.MaterialButton
@@ -48,7 +51,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Clear All Saved Drafts"
-                app:icon="@android:drawable/ic_menu_delete" />
+                android:textSize="12sp"
+                android:paddingVertical="4dp"
+                app:icon="@android:drawable/ic_menu_delete"
+                app:iconSize="18dp" />
 
             <View
                 android:layout_width="match_parent"
