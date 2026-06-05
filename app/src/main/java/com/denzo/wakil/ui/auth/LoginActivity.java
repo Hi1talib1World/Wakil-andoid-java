@@ -1,4 +1,4 @@
-package com.denzo.wakil.Login;
+package com.denzo.wakil.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;

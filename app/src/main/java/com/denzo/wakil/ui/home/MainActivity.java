@@ -1,4 +1,4 @@
-package com.denzo.wakil;
+package com.denzo.wakil.ui.home;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,19 +24,22 @@ import com.denzo.wakil.Database.AppDatabase;
 import com.denzo.wakil.Database.BookingEntity;
 import com.denzo.wakil.Database.DraftEntity;
 import com.denzo.wakil.Decoration.GridSpacingItemDecoration;
-import com.denzo.wakil.Login.LoginActivity;
+import com.denzo.wakil.ui.auth.LoginActivity;
 import com.denzo.wakil.Util.CurrentUser;
 import com.denzo.wakil.Util.Hotel;
 import com.denzo.wakil.Util.HotelView;
 import com.denzo.wakil.Util.Reader;
 import com.denzo.wakil.adapters.HotelsAdapter;
+import com.denzo.wakil.MainViewModel;
+import com.denzo.wakil.AddPostActivity;
+import com.denzo.wakil.SettingsActivity;
+import com.denzo.wakil.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.slider.RangeSlider;
 
-import com.denzo.wakil.Database.BlockedEntity;
-import com.denzo.wakil.Database.HousePostEntity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -87,19 +91,54 @@ public class MainActivity extends AppCompatActivity {
             adapter.updateList(hotelList);
         });
 
+        ChipGroup filterChipGroup = findViewById(R.id.filter_chip_group);
+        filterChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (checkedIds.isEmpty()) {
+                viewModel.filterHotels("All");
+                return;
+            }
+            int checkedId = checkedIds.get(0);
+            if (checkedId == R.id.chip_all) {
+                viewModel.filterHotels("All");
+            } else if (checkedId == R.id.chip_high_rating) {
+                viewModel.filterHotels("High Rating");
+            } else if (checkedId == R.id.chip_budget) {
+                viewModel.filterHotels("Budget");
+            } else if (checkedId == R.id.chip_luxury) {
+                viewModel.filterHotels("Luxury");
+            }
+        });
+
+        RangeSlider priceSlider = findViewById(R.id.price_range_slider);
+        TextView tvPriceRange = findViewById(R.id.tv_price_range);
+        priceSlider.setValues(0f, 500f);
+        priceSlider.addOnChangeListener((slider, value, fromUser) -> {
+            List<Float> values = slider.getValues();
+            float min = values.get(0);
+            float max = values.get(1);
+            tvPriceRange.setText(String.format(java.util.Locale.US, "Price Range: $%.0f - $%.0f", min, max));
+            viewModel.filterHotelsByPrice(min, max);
+        });
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
                 appBarLayout.setExpanded(true);
+                findViewById(R.id.filter_container).setVisibility(View.VISIBLE);
+                findViewById(R.id.price_filter_container).setVisibility(View.VISIBLE);
                 viewModel.loadHotels(username);
                 return true;
             } else if (id == R.id.nav_bookings) {
                 appBarLayout.setExpanded(false);
+                findViewById(R.id.filter_container).setVisibility(View.GONE);
+                findViewById(R.id.price_filter_container).setVisibility(View.GONE);
                 viewModel.loadMyBookings(username);
                 return true;
             } else if (id == R.id.nav_saved) {
                 appBarLayout.setExpanded(false);
+                findViewById(R.id.filter_container).setVisibility(View.GONE);
+                findViewById(R.id.price_filter_container).setVisibility(View.GONE);
                 showSavedDrafts();
                 return true;
             }
@@ -108,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel.loadHotels(username);
 
-        FloatingActionButton fabAdd = findViewById(R.id.fab_add_post);
+        com.google.android.material.floatingactionbutton.FloatingActionButton fabAdd = findViewById(R.id.fab_add_post);
         fabAdd.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, AddPostActivity.class));
         });
