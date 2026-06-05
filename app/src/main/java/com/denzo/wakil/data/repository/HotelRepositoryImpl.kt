@@ -55,7 +55,7 @@ class HotelRepositoryImpl @Inject constructor(
         return blockedDao.getBlockedUsers(username)
     }
 
-    override fun getBlockedPosts(username: String): List<Integer> {
+    override fun getBlockedPosts(username: String): List<Int> {
         return blockedDao.getBlockedPosts(username)
     }
 }
