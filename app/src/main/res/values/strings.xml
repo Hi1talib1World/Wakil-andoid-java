@@ -44,4 +44,8 @@
     <string name="toast_booking_cancelled">Booking cancelled</string>
     <string name="label_booking_date">Booked on: %1$s</string>
     <string name="label_guests">Guests: %1$d</string>
+    <string name="filter_all">All</string>
+    <string name="filter_top_rated">Top Rated</string>
+    <string name="filter_budget">Budget</string>
+    <string name="filter_luxury">Luxury</string>
 </resources>
