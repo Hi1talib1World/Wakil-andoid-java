@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".WakilApp"
         android:allowBackup="true"
         android:icon="@drawable/wakil"
         android:label="@string/app_name"
@@ -12,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".Login.LoginActivity"
+            android:name=".ui.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,34 +22,34 @@
         </activity>
 
         <activity
-            android:name=".Login.RegisterActivity"
+            android:name=".ui.auth.RegisterActivity"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.home.MainActivity"
             android:exported="false" />
 
         <activity
-            android:name=".HotelViewer"
+            android:name=".ui.booking.HotelViewer"
             android:exported="false" />
 
         <activity
-            android:name=".DraftsActivity"
+            android:name=".ui.booking.DraftsActivity"
             android:exported="false"
             android:label="Saved for Later"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.home.MainActivity" />
 
         <activity
-            android:name=".AddPostActivity"
+            android:name=".ui.home.AddPostActivity"
             android:exported="false"
             android:label="@string/add_post"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.home.MainActivity" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".ui.profile.SettingsActivity"
             android:exported="false"
             android:label="@string/action_settings"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.home.MainActivity" />
 
     </application>
 
