@@ -39,4 +39,12 @@
     <string name="label_rating">التقييم: %1$s</string>
     <string name="label_features">الميزات: %1$s</string>
     <string name="btn_view">عرض</string>
+    <string name="btn_cancel_booking">إلغاء الحجز</string>
+    <string name="toast_booking_cancelled">تم إلغاء الحجز</string>
+    <string name="label_booking_date">تاريخ الحجز: %1$s</string>
+    <string name="label_guests">الضيوف: %1$d</string>
+    <string name="label_booking_details">تسجيل الوصول: %1$s\nتسجيل المغادرة: %2$s\nالضيوف: %3$d | المجموع: $%4$.2f\nالحالة: %5$s</string>
+    <string name="unknown_hotel">فندق غير معروف</string>
+    <string name="label_na">غير متاح</string>
+    <string name="status_unknown">غير معروف</string>
 </resources>
