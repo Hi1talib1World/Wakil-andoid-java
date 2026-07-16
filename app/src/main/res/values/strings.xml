@@ -44,8 +44,12 @@
     <string name="toast_booking_cancelled">Booking cancelled</string>
     <string name="label_booking_date">Booked on: %1$s</string>
     <string name="label_guests">Guests: %1$d</string>
+    <string name="label_booking_details">Check-in: %1$s\nCheck-out: %2$s\nGuests: %3$d | Total: $%4$.2f\nStatus: %5$s</string>
     <string name="filter_all">All</string>
     <string name="filter_top_rated">Top Rated</string>
     <string name="filter_budget">Budget</string>
     <string name="filter_luxury">Luxury</string>
+    <string name="unknown_hotel">Unknown Hotel</string>
+    <string name="label_na">N/A</string>
+    <string name="status_unknown">Unknown</string>
 </resources>
