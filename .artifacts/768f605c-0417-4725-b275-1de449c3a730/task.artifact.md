@@ -1,0 +1,9 @@
+- [ ] Add `google-services.json` to `app/` directory
+- [ ] Configure project-level `build.gradle`
+- [ ] Configure app-level `build.gradle`
+- [ ] Update `strings.xml` (Username -> Email)
+- [ ] Update `activity_login.xml` layout
+- [ ] Update `activity_register.xml` layout
+- [ ] Implement Firebase Auth in `RegisterActivity.java`
+- [ ] Implement Firebase Auth in `LoginActivity.java`
+- [ ] Verify build and functionality

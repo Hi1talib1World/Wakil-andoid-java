@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "79572236324",
+    "project_id": "wakil-cc0ab",
+    "storage_bucket": "wakil-cc0ab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79572236324:android:4d62d9d827d886049200b1",
+        "android_client_info": {
+          "package_name": "com.denzo.wakil"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsl8ajYgHIn7z__84DppBgq1-9Wy15Md8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
