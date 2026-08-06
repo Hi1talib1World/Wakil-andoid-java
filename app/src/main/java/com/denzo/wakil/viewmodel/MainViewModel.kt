@@ -27,13 +27,13 @@ class MainViewModel @Inject constructor(
     
     private var allHotelsList: List<HotelView> = emptyList()
 
-    fun loadHotels(username: String) {
+    fun loadHotels(username: String?) {
         Thread {
             val cover = intArrayOf(R.drawable.hicon1, R.drawable.hicon2, R.drawable.hicon3, R.drawable.hicon4)
             val random = Random()
-            val bookings = repository.getBookings(username)
-            val blockedUsers = repository.getBlockedUsers(username)
-            val blockedPosts = repository.getBlockedPosts(username)
+            val bookings = username?.let { repository.getBookings(it) } ?: emptyList()
+            val blockedUsers = username?.let { repository.getBlockedUsers(it) } ?: emptyList()
+            val blockedPosts = username?.let { repository.getBlockedPosts(it) } ?: emptyList()
 
             val staticHotels = repository.getStaticHotels()
             val userPosts = repository.getUserPosts()
@@ -84,9 +84,9 @@ class MainViewModel @Inject constructor(
         _hotels.postValue(filtered)
     }
 
-    fun loadMyBookings(username: String) {
+    fun loadMyBookings(username: String?) {
         Thread {
-            val bookings = repository.getBookings(username)
+            val bookings = username?.let { repository.getBookings(it) } ?: emptyList()
             val allHotels = repository.getStaticHotels()
             val bookedList = ArrayList<HotelView>()
             val cover = intArrayOf(R.drawable.hicon1, R.drawable.hicon2, R.drawable.hicon3, R.drawable.hicon4)
